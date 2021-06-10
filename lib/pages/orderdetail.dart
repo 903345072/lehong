@@ -206,11 +206,6 @@ class hangqing_ extends State<orderdetail>{
                                 padding:EdgeInsets.only(top: 5,bottom: 5),
                                 child:  Text('奖金',textAlign: TextAlign.center,),
                               ),
-                              Container(
-                                padding:EdgeInsets.only(top: 5,bottom: 5),
-                                child:  Text('嘉奖',textAlign: TextAlign.center,),
-                              ),
-
 
                             ]
                         ),
@@ -227,10 +222,6 @@ class hangqing_ extends State<orderdetail>{
                               Container(
                                 padding:EdgeInsets.only(top: 5,bottom: 5),
                                 child: Text(order["award_money"]!=null?order["award_money"].toString()+"元":"--",textAlign: TextAlign.center,style: TextStyle(color: Colors.red),),
-                              ),
-                              Container(
-                                padding:EdgeInsets.only(top: 5,bottom: 5),
-                                child: Text(order["state"]==2?double.parse(order["jia_jiang"]).toStringAsFixed(2):"--",textAlign: TextAlign.center,style: TextStyle(color: Colors.red),),
                               )
                             ]
                         ),
@@ -239,7 +230,8 @@ class hangqing_ extends State<orderdetail>{
                   ),
                   Container(
 
-                    margin: EdgeInsets.only(bottom: 100),
+
+             
                     decoration: BoxDecoration(color:Colors.white,border: Border(bottom: BorderSide(width: 5,color: Color(0xfff5f5f5)))),
 
                     child: Column(
@@ -631,9 +623,25 @@ class hangqing_ extends State<orderdetail>{
                       ],
                     ),
                   ),
+                  order["is_self"] == 1?Container(
+                    child: Column(
 
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(child: Text("实体票照片"),),
+                        order["order_pic"] != null && order["order_pic"] != ""?Container(
+                          margin: EdgeInsets.only(top: 10,bottom: 20),
+                          child: Image.network(order["order_pic"]),
+                        ):Container(
+                          margin: EdgeInsets.only(top: 10,bottom: 20),
+                          child: Text("等待店主上传实体票",style: TextStyle(color: Colors.grey),),
+                        )
+                      ],
+                    ),
+                  ):Container(),
 
-
+                  
                 ],
               ),
             ),
@@ -672,6 +680,7 @@ class hangqing_ extends State<orderdetail>{
 
     List ls = game["data"];
 
+    print(ls);
 
     return ls.asMap().keys.map((e) {
       List lst = ls[e]["bet_content"];

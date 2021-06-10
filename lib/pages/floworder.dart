@@ -50,7 +50,6 @@ class Login_ extends State<floworder> {
     super.initState();
     _commentFocus = FocusNode();
     _future = getList();
-
   }
 
   getList() async {
